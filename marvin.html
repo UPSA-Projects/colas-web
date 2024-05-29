@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Colas</title>
+    <script>
+        function calcularMM1() {
+            const μ = parseFloat(document.getElementById('mm1_mu').value);
+            const λ = parseFloat(document.getElementById('mm1_lambda').value);
+            const Lq = Math.pow(λ, 2) / (μ * (μ - λ));
+            const Wq = Lq / λ;
+            document.getElementById('mm1_resultados').innerHTML = `
+                <strong>Longitud media de la cola (Lq):</strong> ${Lq.toFixed(2)}<br>
+                <strong>Tiempo medio de espera en la cola (Wq):</strong> ${Wq.toFixed(2)} minutos<br>
+            `;
+        }
+
+        function calcularMG1() {
+            const μ = parseFloat(document.getElementById('mg1_mu').value);
+            const λ = parseFloat(document.getElementById('mg1_lambda').value);
+            const σ = parseFloat(document.getElementById('mg1_sigma').value);
+            const ρ = parseFloat(document.getElementById('mg1_rho').value);
+            const Lq = (Math.pow(λ, 2) * Math.pow(σ, 2) + Math.pow(ρ, 2)) / (2 * (1 - ρ));
+            const Wq = Lq / λ;
+            document.getElementById('mg1_resultados').innerHTML = `
+                <strong>Longitud media de la cola (Lq):</strong> ${Lq.toFixed(2)} horas<br>
+                <strong>Tiempo medio de espera en la cola (Wq):</strong> ${Wq.toFixed(2)} horas<br>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido al Sistema de Gestión de Colas</h1>
+    </header>
+    <section id="solicitar-turno">
+        <h2>Calcular resultados para M/M/1</h2>
+        <label for="mm1_mu">Ingrese el tiempo medio de servicio (μ):</label>
+        <input type="number" id="mm1_mu" step="0.01"><br>
+        <label for="mm1_lambda">Ingrese la tasa de llegada (λ):</label>
+        <input type="number" id="mm1_lambda" step="0.01"><br>
+        <button type="button" onclick="calcularMM1()">Calcular resultados</button>
+        <div id="mm1_resultados"></div>
+    </section>
+     <section id="consultar-cola">
+        <h2>Calcular resultados para M/G/1</h2>
+        <label for="mg1_mu">Ingrese el tiempo medio de servicio (μ):</label>
+        <input type="number" id="mg1_mu" step="0.01"><br>
+        <label for="mg1_lambda">Ingrese la tasa de llegada (λ):</label>
+        <input type="number" id="mg1_lambda" step="0.01"><br>
+        <label for="mg1_sigma">Ingrese la desviación estándar del tiempo de servicio (σ):</label>
+        <input type="number" id="mg1_sigma" step="0.01"><br>
+        <label for="mg1_rho">Ingrese la utilización del servidor (ρ):</label>
+        <input type="number" id="mg1_rho" step="0.01"><br>
+        <button type="button" onclick="calcularMG1()">Calcular resultados</button>
+        <div id="mg1_resultados"></div>
+    </section>
+</body>
+</html>
