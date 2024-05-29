@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión de Colas</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         function calcularMM1() {
             const μ = parseFloat(document.getElementById('mm1_mu').value);
@@ -24,8 +25,8 @@
             const Lq = (Math.pow(λ, 2) * Math.pow(σ, 2) + Math.pow(ρ, 2)) / (2 * (1 - ρ));
             const Wq = Lq / λ;
             document.getElementById('mg1_resultados').innerHTML = `
-                <strong>Longitud media de la cola (Lq):</strong> ${Lq.toFixed(2)} horas<br>
-                <strong>Tiempo medio de espera en la cola (Wq):</strong> ${Wq.toFixed(2)} horas<br>
+                <strong>Longitud media de la cola (Lq):</strong> ${Lq.toFixed(2)}<br>
+                <strong>Tiempo medio de espera en la cola (Wq):</strong> ${Wq.toFixed(2)} min<br>
             `;
         }
     </script>
